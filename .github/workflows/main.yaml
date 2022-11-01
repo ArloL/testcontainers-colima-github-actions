@@ -77,7 +77,7 @@ jobs:
         brew install docker
         colima start
         docker info
-        docker run -i -t ubuntu /bin/true
+        docker run ubuntu /bin/true
     - name: Build with Maven
       run: |
         set -o xtrace
