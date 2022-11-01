@@ -10,7 +10,7 @@ import org.testcontainers.utility.DockerImageName;
 
 import io.lettuce.core.RedisClient;
 
-@Testcontainers
+@Testcontainers(disabledWithoutDocker = true)
 class RedisTest {
 
 	@Container
