@@ -71,7 +71,7 @@ jobs:
         java-version: ${{ env.JAVA_VERSION }}
         distribution: adopt
         cache: 'maven'
-    - name: setup docker
+    - name: setup docker, colima and testcontainers
       run: |
         set -o xtrace
         brew install docker
