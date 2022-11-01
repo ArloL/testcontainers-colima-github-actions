@@ -76,6 +76,9 @@ jobs:
         set -o xtrace
         brew install docker
         colima start
+        echo "docker.client.strategy=org.testcontainers.dockerclient.EnvironmentAndSystemPropertyClientProviderStrategy" > ~/.testcontainerss.properties
+        echo "docker.host=unix\://${HOME}/.colima/docker.sock" >> ~/.testcontainerss.properties
+        cat ~/.testcontainerss.properties
         echo "TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock" >> $GITHUB_ENV
         echo "DOCKER_HOST='unix://${HOME}/.colima/docker.sock'" >> $GITHUB_ENV
     - name: Build with Maven
