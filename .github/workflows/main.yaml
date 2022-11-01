@@ -78,11 +78,11 @@ jobs:
         colima start
         docker info
         docker run ubuntu /bin/true
+        echo "TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock" >> $GITHUB_ENV
+        echo "DOCKER_HOST='unix://${HOME}/.colima/docker.sock'" >> $GITHUB_ENV
     - name: Build with Maven
       run: |
         set -o xtrace
-        export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
-        export DOCKER_HOST="unix://${HOME}/.colima/docker.sock"
         ./mvnw \
           --batch-mode \
           -Dsha1="${GITHUB_SHA}" \
