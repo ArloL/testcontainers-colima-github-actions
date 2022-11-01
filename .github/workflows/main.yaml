@@ -71,6 +71,12 @@ jobs:
         java-version: ${{ env.JAVA_VERSION }}
         distribution: adopt
         cache: 'maven'
+    - name: setup docker
+      run: |
+        brew install docker
+        colima start
+        docker info
+        docker run -i -t ubuntu /bin/true
     - name: Build with Maven
       run: |
         set -o xtrace
