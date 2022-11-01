@@ -71,18 +71,16 @@ jobs:
         java-version: ${{ env.JAVA_VERSION }}
         distribution: adopt
         cache: 'maven'
-    - name: setup docker
+    - name: setup docker, colima and testcontainers
       run: |
         set -o xtrace
         brew install docker
         colima start
-        docker info
-        docker run ubuntu /bin/true
+        echo "docker.client.strategy=org.testcontainers.dockerclient.EnvironmentAndSystemPropertyClientProviderStrategy" > ~/.testcontainers.properties
+        echo "docker.host=unix\://${HOME}/.colima/docker.sock" >> ~/.testcontainers.properties
     - name: Build with Maven
       run: |
         set -o xtrace
-        export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
-        export DOCKER_HOST="unix://${HOME}/.colima/docker.sock"
         ./mvnw \
           --batch-mode \
           -Dsha1="${GITHUB_SHA}" \
