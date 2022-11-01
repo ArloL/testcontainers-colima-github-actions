@@ -73,6 +73,7 @@ jobs:
         cache: 'maven'
     - name: setup docker
       run: |
+        set -o xtrace
         brew install docker
         colima start
         docker info
