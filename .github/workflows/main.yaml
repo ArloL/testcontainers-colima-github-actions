@@ -76,6 +76,7 @@ jobs:
         set -o xtrace
         brew update
         brew upgrade qemu colima lima
+        brew reinstall -f --force-bottle qemu
         brew install docker
         colima start
         echo "TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock" >> $GITHUB_ENV
