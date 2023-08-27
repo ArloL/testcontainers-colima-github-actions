@@ -80,6 +80,7 @@ jobs:
         brew upgrade qemu lima
         brew reinstall -f --force-bottle qemu
         brew install docker
+        colima delete
         colima start
         echo "TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock" >> $GITHUB_ENV
         echo "DOCKER_HOST=unix://${HOME}/.colima/docker.sock" >> $GITHUB_ENV
