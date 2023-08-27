@@ -72,12 +72,12 @@ jobs:
         distribution: temurin
         cache: 'maven'
     - name: setup docker, colima and testcontainers
+      env:
+        HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: true
       run: |
         set -o xtrace
         brew update
-        ls -lsa /usr/local/bin/2to3
-        brew upgrade python@3.11 || brew link --overwrite python@3.11
-        brew upgrade qemu colima lima
+        brew upgrade qemu lima
         brew reinstall -f --force-bottle qemu
         brew install docker
         colima start
